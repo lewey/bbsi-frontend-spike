@@ -16,7 +16,7 @@
 
 @import config.FrontendAppConfig
 
-@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@(externalId:String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
 @main_template(
     title = messages("index.title"),
@@ -26,4 +26,5 @@
     @components.heading("index.heading")
 
     <p>@messages("index.guidance")</p>
+    <p>@externalId</p>
 }
