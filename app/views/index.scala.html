@@ -15,8 +15,9 @@
  *@
 
 @import config.FrontendAppConfig
+@import uk.gov.hmrc.renderer.TemplateRenderer
 
-@(externalId:String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@(externalId:String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages, templateRenderer: TemplateRenderer)
 
 @main_template(
     title = messages("index.title"),

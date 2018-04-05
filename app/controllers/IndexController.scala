@@ -16,18 +16,17 @@
 
 package controllers
 
+import config.FrontendAppConfig
+import controllers.BaseController.BaseController
+import controllers.actions.AuthAction
 import javax.inject.Inject
-
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.{Action, AnyContent}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
-import config.FrontendAppConfig
-import controllers.actions.AuthAction
 import views.html.index
 
 class IndexController @Inject()(val appConfig: FrontendAppConfig,
                                 val messagesApi: MessagesApi,
-                                    authenticate: AuthAction ) extends FrontendController with I18nSupport {
+                                    authenticate: AuthAction ) extends BaseController with I18nSupport {
 
   def onPageLoad: Action[AnyContent] = authenticate { implicit request =>
     Ok(index(request.externalId,appConfig))

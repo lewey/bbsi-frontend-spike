@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
-package views
+package config
 
-import views.behaviours.ViewBehaviours
-import views.html.session_expired
+import uk.gov.hmrc.http.hooks.HttpHooks
+import uk.gov.hmrc.http.{HttpDelete, HttpGet, HttpPost, HttpPut}
+import uk.gov.hmrc.play.http.ws._
 
-class SessionExpiredViewSpec extends ViewBehaviours {
 
-  def view = () => session_expired(frontendAppConfig)(fakeRequest, messages, templateRenderer)
-
-  "Session Expired view" must {
-
-    behave like normalPage(view, "session_expired", "guidance")
-  }
+trait Hooks extends HttpHooks {
+  override val hooks = Seq.empty
 }
+
+trait WSHttp extends HttpGet with WSGet
+  with HttpPut with WSPut
+  with HttpPost with WSPost
+  with HttpDelete with WSDelete
+  with Hooks
+
+object WSHttp extends WSHttp

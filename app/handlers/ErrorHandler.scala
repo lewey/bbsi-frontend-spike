@@ -17,12 +17,13 @@
 package handlers
 
 import javax.inject.{Inject, Singleton}
-
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.Request
 import play.twirl.api.Html
 import config.FrontendAppConfig
+import connectors.LocalTemplateRenderer
 import uk.gov.hmrc.play.bootstrap.http.FrontendErrorHandler
+import uk.gov.hmrc.renderer.TemplateRenderer
 
 @Singleton
 class ErrorHandler @Inject()(
@@ -32,5 +33,7 @@ class ErrorHandler @Inject()(
 
   override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(implicit rh: Request[_]): Html =
     views.html.error_template(pageTitle, heading, message, appConfig)
+
+  implicit val templateRenderer: TemplateRenderer = LocalTemplateRenderer
 }
 

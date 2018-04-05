@@ -14,17 +14,14 @@
  * limitations under the License.
  */
 
-package views
+package controllers.BaseController
 
-import views.behaviours.ViewBehaviours
-import views.html.session_expired
+import connectors.LocalTemplateRenderer
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.renderer.TemplateRenderer
 
-class SessionExpiredViewSpec extends ViewBehaviours {
+class BaseController extends FrontendController  {
 
-  def view = () => session_expired(frontendAppConfig)(fakeRequest, messages, templateRenderer)
+  implicit val templateRenderer: TemplateRenderer = LocalTemplateRenderer
 
-  "Session Expired view" must {
-
-    behave like normalPage(view, "session_expired", "guidance")
-  }
 }

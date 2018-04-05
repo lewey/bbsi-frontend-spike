@@ -15,14 +15,17 @@
  *@
 
 @import config.FrontendAppConfig
+@import uk.gov.hmrc.renderer.TemplateRenderer
 
 @(title: String,
   appConfig: FrontendAppConfig,
   sidebarLinks: Option[Html] = None,
   contentHeader: Option[Html] = None,
+  articleClasses: Option[String] = Some("full-width"),
+  includeGridWrapper: Boolean = false,
   bodyClasses: Option[String] = None,
   mainClass: Option[String] = None,
-  scriptElem: Option[Html] = None)(mainContent: Html)(implicit request : Request[_], messages: Messages)
+  scriptElem: Option[Html] = None)(mainContent: Html)(implicit request : Request[_], messages: Messages, templateRenderer: TemplateRenderer)
 
 @import uk.gov.hmrc.play.views.html.layouts
 
@@ -34,13 +37,6 @@
     }
 }
 
-@govuk_wrapper(appConfig = appConfig,
-               title = title,
-               mainClass = mainClass,
-               bodyClasses = bodyClasses,
-               sidebar = sidebar,
-               contentHeader = contentHeader,
-               mainContent = layouts.article(mainContent),
-               serviceInfoContent = serviceInfoContent,
-               scriptElem = scriptElem
-)
+@{
+templateRenderer.renderDefaultTemplate(layouts.article(mainContent, includeGridWrapper, articleClasses), Map[String, Any]())
+}

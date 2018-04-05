@@ -16,8 +16,9 @@
 
 @import config.FrontendAppConfig
 @import viewmodels.{Section, AnswerSection, RepeaterAnswerSection}
+@import uk.gov.hmrc.renderer.TemplateRenderer
 
-@(appConfig: FrontendAppConfig, answerSections: Seq[Section])(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig, answerSections: Seq[Section])(implicit request: Request[_], messages: Messages, templateRenderer: TemplateRenderer)
 
 @main_template(
     title = messages("checkYourAnswers.title"),
