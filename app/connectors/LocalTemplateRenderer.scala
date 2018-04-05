@@ -40,6 +40,6 @@ object LocalTemplateRenderer extends TemplateRenderer with ServicesConfig {
     WSHttp.GET(path).map(_.body)
   }
 
-  override protected def mode: Mode = play.api.Mode.Dev
-  override protected def runModeConfiguration: Configuration = Configuration.empty
+ override protected def mode: Mode = play.api.Mode.Dev
+ override protected def runModeConfiguration: Configuration =
 }

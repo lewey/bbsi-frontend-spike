@@ -20,8 +20,14 @@ import connectors.LocalTemplateRenderer
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import uk.gov.hmrc.renderer.TemplateRenderer
 
+import scala.language.postfixOps
+
 class BaseController extends FrontendController  {
 
   implicit val templateRenderer: TemplateRenderer = LocalTemplateRenderer
 
 }
+
+
+
+
