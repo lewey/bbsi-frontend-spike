@@ -18,9 +18,10 @@ package controllers
 
 import com.google.inject.Inject
 import config.FrontendAppConfig
-import controllers.BaseController.BaseController
 import controllers.actions.{AuthAction, DataRequiredAction, DataRetrievalAction}
 import play.api.i18n.{I18nSupport, MessagesApi}
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.renderer.TemplateRenderer
 import utils.CheckYourAnswersHelper
 import viewmodels.AnswerSection
 import views.html.check_your_answers
@@ -29,7 +30,8 @@ class CheckYourAnswersController @Inject()(appConfig: FrontendAppConfig,
                                            override val messagesApi: MessagesApi,
                                            authenticate: AuthAction,
                                            getData: DataRetrievalAction,
-                                           requireData: DataRequiredAction) extends BaseController with I18nSupport {
+                                           requireData: DataRequiredAction)
+                                          (implicit templateRenderer: TemplateRenderer) extends FrontendController with I18nSupport {
 
   def onPageLoad() = (authenticate andThen getData andThen requireData) {
     implicit request =>
