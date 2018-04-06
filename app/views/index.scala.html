@@ -14,14 +14,24 @@
  * limitations under the License.
  *@
 
+@import includes.ptaHeader
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.renderer.TemplateRenderer
 
 @(externalId:String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages, templateRenderer: TemplateRenderer)
 
+@header = @{
+    ptaHeader(
+        displayBackLink = true,
+        mainHeadingText = "BBSI frontend spike header",
+        preHeadingText = "BBSI frontend spike pre-header"
+    )
+}
+
 @main_template(
     title = messages("index.title"),
     appConfig = appConfig,
+    pageHeader = Some(header),
     bodyClasses = None) {
 
     @components.heading("index.heading")

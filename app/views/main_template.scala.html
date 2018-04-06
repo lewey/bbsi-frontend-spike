@@ -25,7 +25,8 @@
   includeGridWrapper: Boolean = false,
   bodyClasses: Option[String] = None,
   mainClass: Option[String] = None,
-  scriptElem: Option[Html] = None)(mainContent: Html)(implicit request : Request[_], messages: Messages, templateRenderer: TemplateRenderer)
+  scriptElem: Option[Html] = None,
+  pageHeader: Option[Html] = None)(mainContent: Html)(implicit request : Request[_], messages: Messages, templateRenderer: TemplateRenderer)
 
 @import uk.gov.hmrc.play.views.html.layouts
 
@@ -37,6 +38,11 @@
     }
 }
 
+@mainContentHeader = {
+    @pageHeader.getOrElse(Html(""))
+}
+
+
 @{
-templateRenderer.renderDefaultTemplate(layouts.article(mainContent, includeGridWrapper, articleClasses), Map[String, Any]())
+    templateRenderer.renderDefaultTemplate(layouts.article(mainContent, includeGridWrapper, articleClasses), Map("mainContentHeader" -> mainContentHeader))
 }
