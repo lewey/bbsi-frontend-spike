@@ -1,7 +1,4 @@
 import sbt._
-import uk.gov.hmrc.SbtAutoBuildPlugin
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin
-import uk.gov.hmrc.versioning.SbtGitVersioning
 
 object FrontendBuild extends Build with MicroService {
 
@@ -11,8 +8,8 @@ object FrontendBuild extends Build with MicroService {
 }
 
 private object AppDependencies {
-  import play.sbt.PlayImport._
   import play.core.PlayVersion
+  import play.sbt.PlayImport._
 
   private val playHealthVersion = "2.1.0"
   private val logbackJsonLoggerVersion = "3.1.0"
@@ -29,6 +26,7 @@ private object AppDependencies {
   private val bootstrapVersion = "1.4.0"
   private val scalacheckVersion = "1.13.4"
   private val localTemplateRendererVersion = "1.3.0"
+  private val frontendBootstrapVersion = "8.9.0"
 
   val compile = Seq(
     ws,
@@ -40,6 +38,7 @@ private object AppDependencies {
     "uk.gov.hmrc" %% "play-conditional-form-mapping" % playConditionalFormMappingVersion,
     "uk.gov.hmrc" %% "bootstrap-play-25" % bootstrapVersion,
     "uk.gov.hmrc" %% "play-language" % playLanguageVersion,
+    "uk.gov.hmrc" %% "frontend-bootstrap"  %  frontendBootstrapVersion,
     "uk.gov.hmrc" %% "local-template-renderer" % localTemplateRendererVersion
   )
 

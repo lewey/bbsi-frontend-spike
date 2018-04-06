@@ -31,7 +31,7 @@ class IndexController @Inject()(val appConfig: FrontendAppConfig,
                                (implicit templateRenderer: TemplateRenderer) extends FrontendController with I18nSupport {
 
   def onPageLoad: Action[AnyContent] = authenticate { implicit request =>
-    Ok(index(request.externalId,appConfig))
+    Ok(index("TEST", appConfig))
   }
 }
 
