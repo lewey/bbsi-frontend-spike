@@ -44,5 +44,5 @@
 
 
 @{
-    templateRenderer.renderDefaultTemplate(layouts.article(mainContent, includeGridWrapper, articleClasses), Map("mainContentHeader" -> mainContentHeader))
+    templateRenderer.renderDefaultTemplate(layouts.article(mainContent, includeGridWrapper, articleClasses), Map("pageTitle" -> title, "mainContentHeader" -> mainContentHeader))
 }

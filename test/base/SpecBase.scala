@@ -37,5 +37,5 @@ trait SpecBase extends PlaySpec with GuiceOneAppPerSuite {
 
   def messages: Messages = messagesApi.preferred(fakeRequest)
 
-  def templateRenderer: TemplateRenderer = MockTemplateRenderer
+  implicit val templateRenderer: TemplateRenderer = MockTemplateRenderer
 }
